@@ -1,45 +1,29 @@
-let carrito = [];
-let total = 0;
+function recuperarProductos() {
+  let contador = 1;
+  let carritoProductos = [];
 
-const botonesAgregarCarrito = document.querySelectorAll(".btnCarrito");
+  while (localStorage.getItem(`producto${contador}-titulo`)) {
+    let tituloProducto = localStorage.getItem(`producto${contador}-titulo`);
+    let precioProducto = localStorage.getItem(`producto${contador}-precio`);
+    let cantidadProducto = localStorage.getItem(`producto${contador}-cantidad`);
 
-for (let boton of botonesAgregarCarrito) {
-  boton.addEventListener("click", () => {
-    const divTituloHamburguesa = document.querySelector(".titulo");
-    const h2PrecioHamburguesa = document.getElementById("precio");
-
-    let tituloHamburguesa = divTituloHamburguesa.innerHTML;
-    let precioHamburguesa = parseFloat(
-      h2PrecioHamburguesa.innerHTML.replace("$", "")
-    );
-    let cantidad = 1;
-
-    const nuevoProducto = {
-      titulo: tituloHamburguesa,
-      precio: precioHamburguesa,
-      cantidad: cantidad,
+    const producto = {
+      titulo: tituloProducto,
+      precio: precioProducto,
+      cantidad: cantidadProducto,
     };
-
-    let agregar = true;
-    for (let producto of carrito) {
-      if (producto["titulo"] === nuevoProducto["titulo"]) {
-        producto["cantidad"]++;
-        producto["precio"] += nuevoProducto["precio"];
-        agregar = false;
-      }
-    }
-    if (agregar) {
-      carrito.push(nuevoProducto);
-    }
-    total += nuevoProducto["precio"];
-    console.log(carrito);
-    console.log(total);
-  });
+    carritoProductos.push(producto);
+    contador++;
+  }
+  return carritoProductos;
 }
 
+let carrito = recuperarProductos();
+
 function determinarImagenDeHamburguesa(nombreHamburguesa) {
-  let nombrePath = nombreHamburguesa.replace(" ", "-");
+  let nombrePath = nombreHamburguesa.replace(/ /g, "-");
   nombrePath = nombrePath.replace("'", "");
+  console.log(nombrePath);
   let path = `../img/${nombrePath}.png`;
   return path;
 }
@@ -61,14 +45,14 @@ for (let producto of carrito) {
 
   const imgHamburguesa = document.createElement("img");
   imgHamburguesa.classList.add("fotoHamburguesa");
-  imgHamburguesa.src = determinarImagenDeHamburguesa(producto["nombre"]);
+  imgHamburguesa.src = determinarImagenDeHamburguesa(producto["titulo"]);
 
   divFotoCarrito.appendChild(imgHamburguesa);
 
   const pNombreArticulo = document.createElement("p");
   pNombreArticulo.classList.add("nombreArticulo");
 
-  const textoNombreArticulo = document.createTextNode(producto["nombre"]);
+  const textoNombreArticulo = document.createTextNode(producto["titulo"]);
 
   pNombreArticulo.appendChild(textoNombreArticulo);
 
