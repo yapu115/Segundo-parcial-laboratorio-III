@@ -54,25 +54,27 @@
           <p>BORRAR</p>
         </div>
 
-        <article class="compraUnidad">
-          <p class="fotoCarrito">
-            <img class="fotoBeto" src="../img/Beto's.png" />
-          </p>
-          <p class="nombreArticulo">Beto's</p>
-          <p class="cantidad">
-            <input
-              class="contador"
-              type="number"
-              id="cantidad"
-              value="1"
-              min="1"
-            />
-          </p>
-          <p class="precio">$7500</p>
-          <p class="borrar">
-            <img class="imgTacho" src="../img/eliminar.png" />
-          </p>
-        </article>
+        <div id="carrito-container">
+          <article class="compraUnidad">
+            <div class="fotoCarrito">
+              <img class="fotoHamburguesa" src="../img/Beto's.png" />
+            </div>
+            <p class="nombreArticulo">Beto's</p>
+            <p class="producto-cantidad-carrito">
+              <input
+                class="contador"
+                type="number"
+                id="cantidad"
+                value="1"
+                min="1"
+              />
+            </p>
+            <p class="producto-precio-carrito">$7500</p>
+            <p class="borrar">
+              <img class="imgTacho" src="../img/eliminar.png" />
+            </p>
+          </article>
+        </div>
 
         <!-- <article class="compraUnidad">
                 <p class="fotoCarrito">
@@ -258,5 +260,6 @@
         >
       </div>
     </footer>
+    <script type="module" src="../js/carrito.js"></script>
   </body>
 </html>
