@@ -3,6 +3,7 @@ function recuperarProductos() {
   let contador = 1;
   let carritoProductos = [];
 
+  // mientras que el producto exista en el LS se agrega al carrito
   while (localStorage.getItem(`producto${contador}-titulo`)) {
     let tituloProducto = localStorage.getItem(`producto${contador}-titulo`);
     let precioProducto = localStorage.getItem(`producto${contador}-precio`);
@@ -19,8 +20,6 @@ function recuperarProductos() {
   return carritoProductos;
 }
 
-let carrito = recuperarProductos();
-
 // Conseguir el path de una imagen a partir de su nombre
 function determinarImagenDeHamburguesa(nombreHamburguesa) {
   let nombrePath = nombreHamburguesa.replace(/ /g, "-");
@@ -34,109 +33,123 @@ function determinarPrecio(producto) {
   return producto["precio"] * producto["cantidad"];
 }
 
-// Mostrar los productos agregados al carrito
-const divCarritoContainer = document.getElementById("carrito-container");
-
-for (let producto of carrito) {
+function imprimirCarrito() {
+  // Mostrar los productos agregados al carrito
   const divCarritoContainer = document.getElementById("carrito-container");
 
-  // Creación de todos los productos en el carrito
-  const articleCompraUnidad = document.createElement("article");
-  articleCompraUnidad.classList.add("compraUnidad");
+  for (let producto of carrito) {
+    const divCarritoContainer = document.getElementById("carrito-container");
 
-  const pFotoCarrito = document.createElement("p");
-  pFotoCarrito.classList.add("fotoCarrito");
+    // Creación de todos los productos en el carrito
+    const articleCompraUnidad = document.createElement("article");
+    articleCompraUnidad.classList.add("compraUnidad");
 
-  const imgHamburguesa = document.createElement("img");
-  imgHamburguesa.classList.add("fotoHamburguesa");
-  imgHamburguesa.src = determinarImagenDeHamburguesa(producto["titulo"]);
+    const pFotoCarrito = document.createElement("p");
+    pFotoCarrito.classList.add("fotoCarrito");
 
-  pFotoCarrito.appendChild(imgHamburguesa);
+    const imgHamburguesa = document.createElement("img");
+    imgHamburguesa.classList.add("fotoHamburguesa");
+    imgHamburguesa.src = determinarImagenDeHamburguesa(producto["titulo"]);
 
-  const pNombreArticulo = document.createElement("p");
-  pNombreArticulo.classList.add("nombreArticulo");
+    pFotoCarrito.appendChild(imgHamburguesa);
 
-  const textoNombreArticulo = document.createTextNode(producto["titulo"]);
+    const pNombreArticulo = document.createElement("p");
+    pNombreArticulo.classList.add("nombreArticulo");
 
-  pNombreArticulo.appendChild(textoNombreArticulo);
+    const textoNombreArticulo = document.createTextNode(producto["titulo"]);
 
-  const pCantidad = document.createElement("p");
-  pCantidad.classList.add("producto-cantidad-carrito");
+    pNombreArticulo.appendChild(textoNombreArticulo);
 
-  const inputCantidad = document.createElement("input");
-  inputCantidad.classList.add("contador");
-  inputCantidad.type = "number";
-  inputCantidad.value = producto["cantidad"];
-  inputCantidad.min = "1";
-  inputCantidad.max = "10";
+    const pCantidad = document.createElement("p");
+    pCantidad.classList.add("producto-cantidad-carrito");
 
-  pCantidad.appendChild(inputCantidad);
+    const inputCantidad = document.createElement("input");
+    inputCantidad.classList.add("contador");
+    inputCantidad.type = "number";
+    inputCantidad.value = producto["cantidad"];
+    inputCantidad.min = "1";
+    inputCantidad.max = "10";
 
-  const pPrecio = document.createElement("p");
-  pPrecio.classList.add("producto-precio-carrito");
+    pCantidad.appendChild(inputCantidad);
 
-  const textoPrecio = document.createTextNode(`$${determinarPrecio(producto)}`);
-  pPrecio.appendChild(textoPrecio);
+    const pPrecio = document.createElement("p");
+    pPrecio.classList.add("producto-precio-carrito");
 
-  const pBorrar = document.createElement("p");
-  const btnBorrar = document.createElement("button");
-  btnBorrar.classList.add("btn-borrar");
-  btnBorrar.type = "button";
+    const textoPrecio = document.createTextNode(
+      `$${determinarPrecio(producto)}`
+    );
+    pPrecio.appendChild(textoPrecio);
 
-  const imgTacho = document.createElement("img");
-  imgTacho.classList.add("imgTacho");
-  imgTacho.src = "../img/eliminar.png";
+    const pBorrar = document.createElement("p");
+    const btnBorrar = document.createElement("button");
+    btnBorrar.classList.add("btn-borrar");
+    btnBorrar.type = "button";
 
-  btnBorrar.appendChild(imgTacho);
-  pBorrar.appendChild(btnBorrar);
+    const imgTacho = document.createElement("img");
+    imgTacho.classList.add("imgTacho");
+    imgTacho.src = "../img/eliminar.png";
 
-  articleCompraUnidad.appendChild(pFotoCarrito);
-  articleCompraUnidad.appendChild(pNombreArticulo);
-  articleCompraUnidad.appendChild(pCantidad);
-  articleCompraUnidad.appendChild(pPrecio);
-  articleCompraUnidad.appendChild(pBorrar);
+    btnBorrar.appendChild(imgTacho);
+    pBorrar.appendChild(btnBorrar);
 
-  divCarritoContainer.appendChild(articleCompraUnidad);
+    articleCompraUnidad.appendChild(pFotoCarrito);
+    articleCompraUnidad.appendChild(pNombreArticulo);
+    articleCompraUnidad.appendChild(pCantidad);
+    articleCompraUnidad.appendChild(pPrecio);
+    articleCompraUnidad.appendChild(pBorrar);
+
+    divCarritoContainer.appendChild(articleCompraUnidad);
+  }
 }
 
 // Borrar producto
-const botonesEliminar = document.querySelectorAll(".btn-borrar");
+function borrarProducto() {
+  const botonesEliminar = document.querySelectorAll(".btn-borrar");
 
-for (let boton of botonesEliminar) {
-  boton.addEventListener("click", () => {
-    // Eliminación del elemento en tiempo real
-    boton.parentElement.parentElement.remove();
+  for (let boton of botonesEliminar) {
+    boton.addEventListener("click", () => {
+      // Eliminación del elemento en tiempo real
+      boton.parentElement.parentElement.remove();
 
-    // Actualización de los datos del carrito en localStorage
-    let contador = 1;
-    let nombreProducto =
-      boton.parentElement.parentElement.children[1].innerHTML;
+      // Actualización de los datos del carrito en localStorage
+      let contador = 1;
+      let cambiarNumProductos = false;
+      let nombreProducto =
+        boton.parentElement.parentElement.children[1].innerHTML;
 
-    while (localStorage.getItem(`producto${contador}-titulo`)) {
-      if (
-        nombreProducto === localStorage.getItem(`producto${contador}-titulo`)
-      ) {
-        localStorage.setItem(
-          `producto${contador}-titulo`,
-          localStorage.getItem(`producto${contador + 1}-titulo`)
-        );
-        localStorage.setItem(
-          `producto${contador}-cantidad`,
-          localStorage.getItem(`producto${contador + 1}-cantidad`)
-        );
-        localStorage.setItem(
-          `producto${contador}-precio`,
-          localStorage.getItem(`producto${contador + 1}-precio`)
-        );
+      while (localStorage.getItem(`producto${contador}-titulo`)) {
+        if (
+          nombreProducto === localStorage.getItem(`producto${contador}-titulo`)
+        ) {
+          cambiarNumProductos = true;
+        }
 
-        localStorage.removeItem(`producto${contador + 1}-titulo`);
-        localStorage.removeItem(`producto${contador + 1}-cantidad`);
-        localStorage.removeItem(`producto${contador + 1}-precio`);
+        if (cambiarNumProductos) {
+          if (localStorage.getItem(`producto${contador + 1}-titulo`)) {
+            localStorage.setItem(
+              `producto${contador}-titulo`,
+              localStorage.getItem(`producto${contador + 1}-titulo`)
+            );
+            localStorage.setItem(
+              `producto${contador}-cantidad`,
+              localStorage.getItem(`producto${contador + 1}-cantidad`)
+            );
+            localStorage.setItem(
+              `producto${contador}-precio`,
+              localStorage.getItem(`producto${contador + 1}-precio`)
+            );
+          } else {
+            localStorage.removeItem(`producto${contador}-titulo`);
+            localStorage.removeItem(`producto${contador}-cantidad`);
+            localStorage.removeItem(`producto${contador}-precio`);
+            cambiarNumProductos = false;
+          }
+        }
+        contador++;
       }
-
-      contador++;
-    }
-  });
+      calcularCompraFinal();
+    });
+  }
 }
 
 function calcularCompraFinal() {
@@ -166,9 +179,8 @@ function calcularCompraFinal() {
   const textoTotal = document.createTextNode(`$${total}`);
   bTotal.appendChild(textoTotal);
 }
-calcularCompraFinal();
-// Calcular cambio de cantidad
 
+// Calcular cambio de cantidad
 function actualizarObtenerPrecioTotal(nombre, cantidad) {
   let contador = 1;
   let precioProducto;
@@ -185,17 +197,31 @@ function actualizarObtenerPrecioTotal(nombre, cantidad) {
   }
   return cantidad * precioProducto;
 }
-const inputsCantidad = document.querySelectorAll(".contador");
 
-for (let input of inputsCantidad) {
-  input.addEventListener("input", () => {
-    let nombreProducto = input.parentElement.previousElementSibling.innerHTML;
-    let cantidadProducto = input.value;
-    let nuevoPrecio = `$${actualizarObtenerPrecioTotal(
-      nombreProducto,
-      cantidadProducto
-    )}`;
-    input.parentElement.nextElementSibling.innerHTML = nuevoPrecio;
-    calcularCompraFinal();
-  });
+function verificarCambioCantidad() {
+  const inputsCantidad = document.querySelectorAll(".contador");
+
+  for (let input of inputsCantidad) {
+    input.addEventListener("input", () => {
+      let nombreProducto = input.parentElement.previousElementSibling.innerHTML;
+      let cantidadProducto = input.value;
+      let nuevoPrecio = `$${actualizarObtenerPrecioTotal(
+        nombreProducto,
+        cantidadProducto
+      )}`;
+      input.parentElement.nextElementSibling.innerHTML = nuevoPrecio;
+      calcularCompraFinal();
+    });
+  }
 }
+
+// Apenas se inicia la aplicación se carga el carrito
+let carrito = recuperarProductos();
+imprimirCarrito();
+
+// Calculamos el costo final de la compra
+calcularCompraFinal();
+
+// Se verifiva si se cambia la cantidad o si se borra un producto
+verificarCambioCantidad();
+borrarProducto();

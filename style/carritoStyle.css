@@ -45,6 +45,10 @@ aside button {
   left: 63px;
 }
 
+aside button:hover {
+  cursor: pointer;
+}
+
 .contador {
   width: 70px;
   height: 50px;
