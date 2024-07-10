@@ -66,5 +66,6 @@ for (let boton of botonesAgregarCarrito) {
     console.log(total);
 
     guardarProductos(carrito);
+    window.location.href = "../Carrito/index.html";
   });
 }
