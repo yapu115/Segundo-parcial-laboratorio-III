@@ -62,8 +62,15 @@ for (let producto of carrito) {
 
   const pCantidad = document.createElement("p");
   pCantidad.classList.add("producto-cantidad-carrito");
-  const textoCantidad = document.createTextNode(producto["cantidad"]);
-  pCantidad.appendChild(textoCantidad);
+
+  const inputCantidad = document.createElement("input");
+  inputCantidad.classList.add("contador");
+  inputCantidad.type = "number";
+  inputCantidad.value = producto["cantidad"];
+  inputCantidad.min = "1";
+  inputCantidad.max = "10";
+
+  pCantidad.appendChild(inputCantidad);
 
   const pPrecio = document.createElement("p");
   pPrecio.classList.add("producto-precio-carrito");
@@ -129,5 +136,66 @@ for (let boton of botonesEliminar) {
 
       contador++;
     }
+  });
+}
+
+function calcularCompraFinal() {
+  carrito = recuperarProductos();
+  let subtotal = 0;
+  let envio = 0;
+  let total;
+  for (let producto of carrito) {
+    subtotal += determinarPrecio(producto);
+    envio += 1000 * producto["cantidad"];
+  }
+  total = subtotal + envio;
+
+  document.getElementById("precio-subtotal").innerHTML = "";
+  document.getElementById("precio-envio").innerHTML = "";
+  document.getElementById("precio-total").innerHTML = "";
+
+  const bSubtotal = document.getElementById("precio-subtotal");
+  const textoSubtotal = document.createTextNode(`$${subtotal}`);
+  bSubtotal.appendChild(textoSubtotal);
+
+  const bEnvio = document.getElementById("precio-envio");
+  const textoEnvio = document.createTextNode(`$${envio}`);
+  bEnvio.appendChild(textoEnvio);
+
+  const bTotal = document.getElementById("precio-total");
+  const textoTotal = document.createTextNode(`$${total}`);
+  bTotal.appendChild(textoTotal);
+}
+calcularCompraFinal();
+// Calcular cambio de cantidad
+
+function actualizarObtenerPrecioTotal(nombre, cantidad) {
+  let contador = 1;
+  let precioProducto;
+
+  while (localStorage.getItem(`producto${contador}-titulo`)) {
+    if (nombre === localStorage.getItem(`producto${contador}-titulo`)) {
+      precioProducto = localStorage.getItem(`producto${contador}-precio`);
+
+      localStorage.setItem(`producto${contador}-cantidad`, cantidad);
+      break;
+    }
+
+    contador++;
+  }
+  return cantidad * precioProducto;
+}
+const inputsCantidad = document.querySelectorAll(".contador");
+
+for (let input of inputsCantidad) {
+  input.addEventListener("input", () => {
+    let nombreProducto = input.parentElement.previousElementSibling.innerHTML;
+    let cantidadProducto = input.value;
+    let nuevoPrecio = `$${actualizarObtenerPrecioTotal(
+      nombreProducto,
+      cantidadProducto
+    )}`;
+    input.parentElement.nextElementSibling.innerHTML = nuevoPrecio;
+    calcularCompraFinal();
   });
 }

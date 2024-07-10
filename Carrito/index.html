@@ -60,13 +60,7 @@
             </p>
             <p class="nombreArticulo">Beto's</p>
             <p class="producto-cantidad-carrito">
-              <input
-                class="contador"
-                type="number"
-                id="cantidad"
-                value="1"
-                min="1"
-              />
+              <input class="contador" type="number" value="1" min="1" />
             </p>
             <p class="producto-precio-carrito">$7500</p>
             <p>
@@ -81,9 +75,9 @@
       <aside class="resumenCompra">
         <h1>FINALIZAR COMPRA</h1>
         <ul>
-          <li>SUBTOTAL: <b>$10000</b></li>
-          <li>ENVIO: <b>$2000</b></li>
-          <li>TOTAL: <b>$12000</b></li>
+          <li>SUBTOTAL: <b id="precio-subtotal"></b></li>
+          <li>ENVIO: <b id="precio-envio"></b></li>
+          <li>TOTAL: <b id="precio-total"></b></li>
         </ul>
 
         <button>PAGAR</button>
