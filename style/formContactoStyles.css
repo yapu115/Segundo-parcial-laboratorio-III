@@ -8,9 +8,9 @@
 
 .escribinos-container {
   margin: 80px auto;
-  margin-top: 200px;
+  margin-top: 50px;
   width: 90%;
-
+  font-family: "Oswald", sans-serif;
   background: #fff;
   /* padding: 150px 100px; */
   padding: 100px 50px;
@@ -35,7 +35,7 @@ form {
 
 form h2 {
   margin-bottom: 35px;
-  color: #e9d331;
+  color: #E9D331;
   font-size: 2em;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -60,7 +60,7 @@ textarea {
   font-size: 16px;
 
   padding: 12px;
-  border: 2px solid #e9d331;
+  border: 2px solid #E9D331;
   border-radius: 25px;
   transition: border-color 0.3s, background-color 0.3s;
   font-size: 1em;
@@ -92,6 +92,21 @@ button {
   font-size: 1em;
   text-transform: uppercase;
   color: #000;
+}
+
+
+/*llllllllllllllllllllllllllllllllllllllllll*/
+
+.espaciado{
+  margin-bottom: 50px;
+}
+.sucursal p, .sucursal h1{
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  margin: 25px;
+}
+.sucursal h1{
+  font-size: 4rem;
 }
 
 
@@ -132,7 +147,7 @@ button {
 
   .escribinos-container {
     margin: 50px auto;
-    margin-top: 200px;
+    /*margin-top: 200px;*/
     width: 90%;
     padding: 60px 50px;
     width: 60%;

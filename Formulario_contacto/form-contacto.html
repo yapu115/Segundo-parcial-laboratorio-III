@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/f4a159c617.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style/formContactoStyles.css" />
     <link rel="stylesheet" href="../style/HeaderFooterStyle.css">
+    <link rel="stylesheet" href="../style/indexStyle.css">
     <title>Escribenos</title>
     <link rel="icon" href="../img/logo.ico">
   </head>
@@ -19,14 +20,25 @@
           <h4>1706</h4>
         </div>
       </a>
+      <input type="checkbox" id="menu">
+        <label for="menu">
+            <img src="../img/menu-icon.png" class="menu-icon" alt="">
+        </label>
       <nav>
         <a href="../index.html" class="nav-link">HOME</a>
         <a href="../Productos/productos.html" class="nav-link">PRODUCTOS</a>
         <a href="../Carrito/index.html" class="nav-link">CARRITO</a>
-        <a href="#contactos" class="nav-link">CONTACTOS</a>
+        <a href="../Formulario_contacto/form-contacto.html" class="nav-link">CONTACTOS</a>
         <a href="../iniciar/iniciarSesion.html" class="nav-link">INICIAR SESION</a>
       </nav>
     </header>
+
+    <div class="espaciado"></div>
+
+    <div class="sucursal">
+      <h1>CONTACTO</h1>
+      <p>No dudes en ponerte en contacto con nosotros si tienes dudas o sugerencias.</p>
+    </div>
 
     <section class="escribinos-container">
       <form>
@@ -43,12 +55,48 @@
         <label for="telefono" class="dato-lbl">Teléfono:</label>
         <input type="tel" id="lbl-telefono" name="telefono" required />
 
-        <label for="mensaje" class="dato-lbl">Duda o Queja:</label>
+        <label for="mensaje" class="dato-lbl">Mensaje:</label>
         <textarea id="lbl-mensaje" name="mensaje" required></textarea>
 
         <button type="button" id="btn-enviar">Enviar</button>
       </form>
     </section>
+
+    <!-- Sucursal -->
+    <div class="sucursal">
+        <img src="../img/sucursales.png" alt="">
+        <p>¡Tambien podes visitarnos nuestras sucursales y disfrutar de la auténtica experiencia Burger 1706!</p>
+        <p>Con ubicaciones estratégicamente ubicadas en Villa Domínico, Wilde, Sarandí y próximamente en Piñeyro, cada ubicación está diseñada para ofrecerte un ambiente acogedor y familiar, estamos cerca de ti para que disfrutes de nuestras deliciosas hamburguesas</p>
+    </div>
+    <!-- Sucursales -->
+    <article class="sucursales">
+        <div class="ubicaciones">
+            <div class="ubicacion-1">
+                <h3>VILLA DOMINICO</h3>
+                <p>N° DE CALLE 345</p>
+            </div>
+            <div class="ubicacion-2">
+                <h3>WILDE</h3>
+                <p>N° DE CALLE 2345</p>
+            </div>
+            <div class="ubicacion-3">
+                <h3>SARANDI</h3>
+                <p>N° DE CALLE 973</p>
+            </div>
+        </div>
+
+        <div class="mapas">
+            <div class="mapa-1">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26241.451286613945!2d-58.338350835239396!3d-34.700604051993906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a332f18a3b7253%3A0x82c99650b5f6fa8c!2sVilla%20Dominico%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1716661619341!5m2!1ses!2sar"></iframe>
+            </div>
+            <div class="mapa-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26239.521631160947!2d-58.34281142979619!3d-34.70668811669224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a332615471bb17%3A0x416cf3acb3a9b900!2sWilde%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1716661672868!5m2!1ses!2sar"></iframe>
+            </div>
+            <div class="mapa-3">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26247.334064141793!2d-58.3670260298606!3d-34.68205031725278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a3330c4228289f%3A0xb698f582838b673d!2sSarand%C3%AD%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1716661715991!5m2!1ses!2sar"></iframe>
+            </div>
+        </div>
+    </article>
 
     <!-- Final de Presentacion -->
     <div class="fin-presentacion"></div>
@@ -73,22 +121,18 @@
           </p>
         </div>
         <div class="caja">
-          <h2>DUDAS O QUEJAS</h2>
-          <p>¿Tenés alguna duda o queja de nuestros servicios?</p>
-          <a href="form-contacto.html" id="escribinos-link">ESCRIBINOS</a>
-        </div>
-        <div class="caja">
-          <h2>CONTACTOS</h2>
+          <h2>CONTÁCTANOS</h2>
+          <p>¿Tienes alguna pregunta, comentario o sugerencia que te gustaría compartir con nosotros? Estamos aquí para ayudarte y escucharte:</p>
+          <a href="#" id="escribinos-link">ESCRIBINOS</a>
+      </div>
+      <div class="caja">
+          <h2>REDES SOCIALES</h2>
           <div class="red-social">
-            <a href="" class="fa fa-phone">11-6376-9231</a>
-            <a href="" class="fa fa-whatsapp">11-6376-9231</a>
-            <a
-              href="https://www.instagram.com/1706burger?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              target="_blank"
-              class="fa fa-instagram"
-              >1706burguer</a
-            >
+              <a href="" class="fa fa-phone">11-6376-9231</a>
+              <a href="" class="fa fa-whatsapp">11-6376-9231</a>
+              <a href="https://www.instagram.com/1706burger?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="fa fa-instagram">1706burguer</a>
           </div>
+      </div>
         </div>
       </div>
       <div class="grupo-2">

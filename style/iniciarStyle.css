@@ -21,7 +21,7 @@
 
 #contenedor-login {
     background-color: #000000;
-    border: 2px solid #ffcc00;
+    border: 2px solid #E9D331;
     border-radius: 30px;
     max-width: 600px;
     padding: 20px;
@@ -34,7 +34,7 @@
 
 #contenedor-login h1 {
     letter-spacing: 2.5px;
-    color: #ffcc00;
+    color: #E9D331;
     margin-bottom: 35px;
 }
 
@@ -49,7 +49,7 @@
     padding: 10px;
     margin:5px 0px 50px 0px ;
     background-color: #000000;
-    color: #ffcc00;
+    color: #E9D331;
     border: none;
     border-bottom: 1px solid #cccccc;
     border-radius: 5px;
@@ -62,7 +62,7 @@
 }
 
 #contenedor-login input[type="submit"] {
-    background-color: #ffcc00;
+    background-color: #E9D331;
     border: none;
     letter-spacing: 1.5px;
     color: #000000;
@@ -89,7 +89,7 @@
 }
 
 #contenedor-login .registrarse a, #contenedor-login .iniciar-sesion a, #contenedor-login .olvido-contraseña a{
-    color: #ffcc00;
+    color: #E9D331;
     text-decoration: none;
     font-weight: bold;
 }
@@ -156,7 +156,7 @@
     .container-burger1706 h4{
         font-size: 15px;   
     }
-   
+    
     nav{
         padding: 10px 0px;
         padding-left: 60px;
@@ -170,7 +170,7 @@
         height: 30px;
     }
 
-   
+    
     .caja img{
         width: 100px;
     }
@@ -261,7 +261,8 @@
         text-align: center;
         padding: 4px;
     }
-   
+    
+    
     .fin-presentacion{
         height: 15px;
     }
